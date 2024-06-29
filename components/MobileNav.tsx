@@ -14,6 +14,7 @@ import Link from "next/link";
 import { sidebarLinks } from "@/constants";
 import { cn } from "@/lib/utils";
 import { usePathname } from "next/navigation";
+import Footer from "./Footer";
 
 const MobileNav = ({ user }: MobileNavProps) => {
   const pathName = usePathname();
@@ -49,18 +50,15 @@ const MobileNav = ({ user }: MobileNavProps) => {
                     pathName.startsWith(`${item.route}/`);
 
                   return (
-
                     <SheetClose asChild key={item.route}>
-
-
-                    <Link
-                      href={item.route}
-                      key={item.label}
-                      className={cn("mobilenav-sheet_close w-full", {
-                        "bg-bank-gradient": isActive,
-                      })}
-                    >
-                         <Image
+                      <Link
+                        href={item.route}
+                        key={item.label}
+                        className={cn("mobilenav-sheet_close w-full", {
+                          "bg-bank-gradient": isActive,
+                        })}
+                      >
+                        <Image
                           src={item.imgURL}
                           alt={item.label}
                           width={20}
@@ -69,24 +67,23 @@ const MobileNav = ({ user }: MobileNavProps) => {
                             "brightness-[3] invert-0": isActive,
                           })}
                         />
-                     
-                      <p
-                        className={cn("text-16 font-semibold text-black-2 ", {
+
+                        <p
+                          className={cn("text-16 font-semibold text-black-2 ", {
                             "text-white": isActive,
-                        })}
+                          })}
                         >
-                        {item.label}
-                      </p>
-                    </Link>
-                          </SheetClose>
+                          {item.label}
+                        </p>
+                      </Link>
+                    </SheetClose>
                   );
                 })}
-
                 USER
               </nav>
             </SheetClose>
 
-            FOOTER
+            <Footer user={user} type="mobile" />
           </div>
         </SheetContent>
       </Sheet>
